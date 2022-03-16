@@ -1,51 +1,34 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
-import _map from 'lodash/map'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 
-import lsHelper from 'store/lsHelper'
-import { Details, Home, Login, Register } from 'atomic/pages'
+import { useStoreDispatch, useNavStore } from 'helpers/hooks'
+import { navActions } from 'store/navStore'
 
-// type RouteT = { 
-//   name: string;
-//   path: string;
-//   element: React.FunctionComponent<any>;
-//   children?: React.FunctionComponent<any>;
-// }
-
-// type RouteListT = Array<RouteT>
-
-// const PRIVATE_ROUTES: RouteListT = [
-//   { name: 'Default', path: '*', element: (props) => <Home {...props} /> },
-//   { name: 'Home', path: 'home', element:  (props) => <Home {...props} /> },
-//   { name: 'Details', path: 'details', element: (props) => <Details {...props} /> }
-// ]
-
-// const PUBLIC_ROUTES: RouteListT = [
-//   { name: 'Login', path: '*', element: (props) => <Login {...props} /> },
-//   { name: 'Login', path: '', element: (props) => <Login {...props} /> },
-//   { name: 'Register', path: 'register', element: (props) => <Register {...props} /> }
-// ]
+import RouteGuard from 'atomic/atoms/RouteGuard'
+import { Details, Home, Login, Edit, Create } from 'atomic/pages'
 
 const MainRouter: React.FC<any> = () => {
-  const autenticated = !!lsHelper.get('user')
+  const navigator = useNavigate()
+  const dispatcher = useStoreDispatch()
+  const { to: navigateTo } = useNavStore()
 
-  if(!autenticated) {
-    return (
-      <Routes>
-        <Route path="/register" element={<Register />} />
-        <Route path="/" element={<Login />} />
-        <Route path="*" element={<Login />} />
-      </Routes>
-    )
-  }
+  React.useEffect(() => {
+    if (navigateTo !== ''){
+      navigator(navigateTo)
+      dispatcher(navActions.navigate(''))
+    }
+  }, [navigateTo, dispatcher, navigator])
 
   return (
     <Routes>
-      <Route path="/home" element={<Home />} />
-      <Route path="/details" element={<Details />} />
-      <Route path="/" element={<Home />} />
-      <Route path="*" element={<Home />} />
-  </Routes>
+      <Route path="/" element={<RouteGuard><Home /></RouteGuard>} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/home" element={<RouteGuard><Home /></RouteGuard>} />
+      <Route path="/details" element={<RouteGuard><Details /></RouteGuard>} />
+      <Route path="/edit" element={<RouteGuard><Edit /></RouteGuard>} />
+      <Route path="/create" element={<RouteGuard><Create /></RouteGuard>} />
+      <Route path="*" element={<RouteGuard><Home /></RouteGuard>} />
+    </Routes>
   )
 }
 

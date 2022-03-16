@@ -1,0 +1,10 @@
+.history {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: none;
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  white-space: pre;
+}

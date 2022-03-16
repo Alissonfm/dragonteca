@@ -1,11 +1,13 @@
 import Details from "./Details";
 import Home from "./Home";
 import Login from "./Login";
-import Register from "./Register";
+import Edit from "./Edit";
+import Create from "./Create";
 
 export {
   Details,
   Home,
   Login,
-  Register
+  Edit,
+  Create
 }

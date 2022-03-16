@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import { store } from './app/store';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from "react-router-dom";
 import * as serviceWorker from './serviceWorker';
+import store from 'store';
+import { userActions } from 'store/userStore';
 import MainRouter from './router'
+import 'assets/styles/global.css';
+
+(() => {
+  userActions.checkCachedUser()
+})()
 
 ReactDOM.render(
   <React.StrictMode>

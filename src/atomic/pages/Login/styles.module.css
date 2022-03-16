@@ -1,0 +1,44 @@
+.loginBox {
+  padding: 1rem 1.25rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: left;
+  align-items: flex-start;
+  /* box-shadow: 0 0.75rem 1.75rem black; */
+  border-image-repeat: repeat;
+  border: 5px solid transparent;
+}
+
+.loginBox::after {
+  box-sizing: border-box;
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -5px;
+  width: 102%;
+  height: 100%;
+  border: 50px solid transparent;
+  border-image-source: inherit;
+  border-image-repeat: inherit;
+  border-image-slice: 200;
+  border-image-width: 80px;
+  border-image-outset: 7px;
+  z-index: -1;
+}
+
+.loginBox h4 {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.form {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .loginBox {
+    width: 50%;
+  }
+}
