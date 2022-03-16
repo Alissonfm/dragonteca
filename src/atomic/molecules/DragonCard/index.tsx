@@ -7,8 +7,9 @@ import CardContent from '@mui/material/CardContent'
 
 import { DragonT } from 'models'
 
-import bookPattern from 'assets/images/pattern1.jpg'
-import draconicBorder from 'assets/images/draconicBorder2.png'
+// import bookPattern from 'assets/images/pattern1.jpg'
+// import draconicBorder from 'assets/images/draconicBorder2.png'
+import draconicBorder from 'assets/images/historyPattern5.png'
 
 import styles from './styles.module.css'
 
@@ -26,7 +27,8 @@ const DragonCard: React.FunctionComponent<{ dragonData: DragonT, onClick: () => 
 
   const cardSX = {
     position: 'relative',
-    backgroundImage: `url(${bookPattern})`,
+    backgroundColor: 'transparent',
+    // backgroundImage: `url(${bookPattern})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     border: '5px solid transparent',
@@ -46,13 +48,13 @@ const DragonCard: React.FunctionComponent<{ dragonData: DragonT, onClick: () => 
       position: 'absolute',
       width: '100%',
       height: '100%',
-      backgroundColor: 'rgba(0,0,0,0.3)',
+      // backgroundColor: 'rgba(0,0,0,0.3)',
       zIndex: 0
     }
   }
 
   return (
-    <Box sx={boxSX} onClick={onClick}>
+    <Box sx={boxSX} className="glass" onClick={onClick}>
       <Card sx={cardSX}>
         <CardContent>
           <Box sx={{ padding: '0.5rem', display: 'flex', flexFlow: 'column nowrap', alignItems: 'center' }}>

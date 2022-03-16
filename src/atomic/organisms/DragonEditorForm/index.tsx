@@ -22,6 +22,36 @@ const DragonEditorForm: React.FunctionComponent<DragonEditorFormT> = ({ initialV
   const [newHistoryError, setNewHistoryError] = React.useState<string>('')
   const [histories, setHistories] = React.useState<Array<string>>(initialValues?.histories ?? [])
 
+  const onChangeHistory = React.useCallback((target: string, newValue: string) => {
+    const index = histories.findIndex((value) => value === target)
+    
+    if (index >= 0) {
+      const updatedHistories = histories.concat([])
+      updatedHistories.splice(index, 1, newValue)
+      setHistories(() => updatedHistories)
+    }
+  }, [histories])
+
+  const onDeleteHistory = React.useCallback((target: string) => {
+    const index = histories.findIndex((value) => value === target)
+
+    if (index >= 0) {
+      const updatedHistories = histories.concat([])
+      updatedHistories.splice(index, 1)
+      setHistories(() => updatedHistories)
+    }
+  }, [histories])
+
+  const mappedHistories = React.useMemo(() => _map(histories, (history) => (
+    <History
+      key={v4()}
+      canEdit 
+      value={history} 
+      onChange={(newValue) => onChangeHistory(history, newValue)}
+      onRemove={() => onDeleteHistory(history)}
+    />
+  )), [onChangeHistory, onDeleteHistory])
+
   if (!initialValues) return null
 
   const onChangeNewHistory = ({target: { value }}: {target: { value: string }}) => setNewHistory(() => value)
@@ -33,26 +63,6 @@ const DragonEditorForm: React.FunctionComponent<DragonEditorFormT> = ({ initialV
       setNewHistory(() => '')
     } else {
       setNewHistoryError(() => 'Escreva pelo menos 3 caracteres para a história...')
-    }
-  }
-
-  const onChangeHistory = (target: string, newValue: string) => {
-    const index = histories.findIndex((value) => value === target)
-    
-    if (index >= 0) {
-      const updatedHistories = histories.concat([])
-      updatedHistories.splice(index, 1, newValue)
-      setHistories(() => updatedHistories)
-    }
-  }
-
-  const onDeleteHistory = (target: string) => {
-    const index = histories.findIndex((value) => value === target)
-
-    if (index >= 0) {
-      const updatedHistories = histories.concat([])
-      updatedHistories.splice(index, 1)
-      setHistories(() => updatedHistories)
     }
   }
 
@@ -68,7 +78,8 @@ const DragonEditorForm: React.FunctionComponent<DragonEditorFormT> = ({ initialV
     display: 'flex',
     flexFlow: 'row nowrap',
     justifyContent: 'center',
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
+    marginBottom: '2rem'
   }
 
   const submitInterceptor = (newData: DragonT) => {
@@ -91,28 +102,22 @@ const DragonEditorForm: React.FunctionComponent<DragonEditorFormT> = ({ initialV
   }
 
   return (
-    <Formik {...formikProps} >
-      <Form>
-        <Field type="text" name="name" component={mountField} />
-        <Field type="text" name="type" component={mountField} />
-        <Box sx={historiesWrapperSX}>
-          <Box sx={newHistoryWrapperSX}>
-            <Input multiline label="Nova história" value={newHistory} onChange={onChangeNewHistory} errorMessage={newHistoryError} />
-            <IconButton color="primary" sx={{ marginTop: '0.5rem', marginLeft: '0.5rem' }} onClick={onSaveNewHistory}><i className="fa-solid fa-plus"></i></IconButton>
-          </Box>
-          {_map(histories, (history) => (
-            <History
-              key={v4()}
-              canEdit 
-              value={history} 
-              onChange={(newValue) => onChangeHistory(history, newValue)}
-              onRemove={() => onDeleteHistory(history)}
-            />
-          ))}
+    <>
+      <Formik {...formikProps} >
+        <Form>
+          <Field type="text" name="name" component={mountField} />
+          <Field type="text" name="type" component={mountField} />
           <button title="form trigger" style={{ display: 'none' }} ref={triggerRef} type="submit" />
+        </Form>
+      </Formik>
+      <Box sx={historiesWrapperSX}>
+        <Box sx={newHistoryWrapperSX}>
+          <Input multiline label="Nova história" value={newHistory} onChange={onChangeNewHistory} errorMessage={newHistoryError} />
+          <IconButton color="primary" sx={{ marginTop: '0.5rem', marginLeft: '0.5rem' }} onClick={onSaveNewHistory}><i className="fa-solid fa-plus"></i></IconButton>
         </Box>
-      </Form>
-    </Formik>
+        {mappedHistories}
+    </Box>
+  </>
   )
 }
 

@@ -8,6 +8,7 @@
   /* box-shadow: 0 0.75rem 1.75rem black; */
   border-image-repeat: repeat;
   border: 5px solid transparent;
+  margin-left: auto;
 }
 
 .loginBox::after {

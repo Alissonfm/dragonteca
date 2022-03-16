@@ -13,7 +13,7 @@ import Page from 'atomic/templates/Page'
 import History from 'atomic/organisms/History'
 import AlertModal, { AlertModalT } from 'atomic/organisms/AlertModal'
 
-import DetailsBG from 'assets/images/bg2.jpg'
+import pageBg from 'assets/images/bg5.jpg'
 
 const Details: React.FunctionComponent<any> = () => {
   const navigator = useNavigate()
@@ -59,7 +59,7 @@ const Details: React.FunctionComponent<any> = () => {
   )
 
   return (
-    <Page title={`Sobre ${selected.name}`} fabs={[deleteFAB, editFAB]} fullHeight>
+    <Page title={`Sobre ${selected.name}`} background={pageBg} glassContainer fabs={[deleteFAB, editFAB]} fullHeight>
       <AlertModal {...alertProps} />
       <Divider sx={{ marginBottom: '1.5rem' }} />
       <h3 style={{ marginBottom: '1.5rem' }}>Tipo: {selected.type}</h3>

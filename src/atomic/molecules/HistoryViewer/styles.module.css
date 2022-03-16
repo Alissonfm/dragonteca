@@ -5,6 +5,7 @@
   border: none;
   font-size: inherit;
   font-family: inherit;
+  font-weight: 600;
   color: inherit;
-  white-space: pre;
+  white-space: pre-line;
 }

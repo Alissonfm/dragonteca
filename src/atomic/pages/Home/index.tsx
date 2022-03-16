@@ -10,6 +10,7 @@ import Grid from 'atomic/organisms/Grid'
 import Page from 'atomic/templates/Page'
 import { DragonT } from 'models'
 
+import pageBg from 'assets/images/bg3.jpg'
 
 const Home: React.FunctionComponent<any> = () => {
   const navigator = useNavigate()
@@ -32,8 +33,6 @@ const Home: React.FunctionComponent<any> = () => {
     )
   }
 
-
-
   const newDragonFAB = (
     <Fab key="new-dragon-fab" color='primary' onClick={createDragon} title="Adicionar dragão" aria-label="Adicionar dragão">
       <i className="fa-solid fa-book-medical" />
@@ -47,7 +46,7 @@ const Home: React.FunctionComponent<any> = () => {
   )
 
   return (
-    <Page title="Dragonteca" fabs={[newDragonFAB, refreshFAB]} hideTitle fullHeight>
+    <Page title="Dragonteca" background={pageBg} fabs={[newDragonFAB, refreshFAB]} hideTitle fullHeight>
       <Grid data={list} gridItem={mountGridItem} />
     </Page>
   )

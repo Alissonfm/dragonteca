@@ -82,7 +82,8 @@ export const dragonActions = {
     const response = await DragonService.update(payload)
     if(response?.status === 200) {
       dispatch(dragonSlice.actions.updateDragon(response.data))
-      dispatch(navActions.navigate('/home'))
+      dispatch(dragonSlice.actions.selectDragon(response.data))
+      dispatch(navActions.navigate('/details'))
     }
   },
 

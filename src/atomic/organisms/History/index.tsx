@@ -4,6 +4,8 @@ import Box from '@mui/material/Box'
 import HistoryEditor from 'atomic/molecules/HistoryEditor'
 import HistoryViewer from 'atomic/molecules/HistoryViewer'
 
+import Bg from 'assets/images/historyPattern2.png'
+
 type HistoryT = {
   value: string,
   canEdit?: boolean,
@@ -24,13 +26,21 @@ const History: React.FunctionComponent<HistoryT> = ({ value, canEdit = false, on
     display: 'flex',
     flexFlow: 'column nowrap',
     alignItems: 'flex-end',
-    backgroundColor: 'rgba(21, 101, 192, 0.125)',
-    padding: '1rem',
+    padding: '1.5rem',
     borderRadius: '1.5rem',
-    marginBottom: '1rem',
+    marginBottom: '5rem',
+    border: '1px solid transparent',
+    borderImageSource: `url(${Bg})`,
+    borderImageWidth: '4rem',
+    borderImageRepeat: 'round',
+    borderImageSlice: '160',
+    borderImageOutset: '0.85rem',
+    backgroundColor: 'rgba(21, 101, 192, 0.125)',
+    // backgroundRepeat: 'no-repeat',
+    // backgroundSize: 'cover',
     '&:last-item': {
       marginBottom: 'initial'
-    }
+    },
   }
 
   const Component = editionMode 

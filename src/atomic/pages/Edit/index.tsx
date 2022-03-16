@@ -9,7 +9,7 @@ import { dragonActions } from 'store/dragonStore'
 import Page from 'atomic/templates/Page'
 import DragonEditorForm from 'atomic/organisms/DragonEditorForm'
 
-import DetailsBG from 'assets/images/bg2.jpg'
+import pageBg from 'assets/images/bg7.jpg'
 
 const Edit: React.FunctionComponent<any> = () => {
   const { selected, loading } = useDragonStore()
@@ -34,7 +34,7 @@ const Edit: React.FunctionComponent<any> = () => {
   )
 
   return (
-    <Page title={`Atualizando informações sobre: ${selected.name}`} fabs={[updateFAB]} fullHeight>
+    <Page title={`Atualizando informações sobre: ${selected.name}`} background={pageBg} glassContainer fabs={[updateFAB]} fullHeight>
       <DragonEditorForm initialValues={selected} onSubmit={onReceiveChanges} triggerRef={triggerRef}/>
     </Page>
   )

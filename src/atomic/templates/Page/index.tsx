@@ -12,7 +12,7 @@ type PageProps = {
   children: React.ReactNode;
   title?: string;
   background?: string;
-  glassConteiner?: boolean;
+  glassContainer?: boolean;
   fullHeight?: boolean;
   hideTitle?: boolean;
   hideHeader?: boolean;
@@ -20,8 +20,8 @@ type PageProps = {
 }
 
 const Page: React.FunctionComponent<PageProps> = (props) => {
-  const { className, children, title, hideTitle, background, glassConteiner, fullHeight, hideHeader, fabs = [] } = props
-  const containerClasses = classnames([ className, (glassConteiner && !!background) && 'glass', fullHeight && styles.fullHeight ])
+  const { className, children, title, hideTitle, background, glassContainer, fullHeight, hideHeader, fabs = [] } = props
+  const containerClasses = classnames([ className, (glassContainer && !!background) && 'glass', fullHeight && styles.fullHeight ])
 
   const fabWrapperSX = {
     display: 'flex',

@@ -9,6 +9,8 @@ import Page from 'atomic/templates/Page'
 import DragonEditorForm from 'atomic/organisms/DragonEditorForm'
 import { DragonT } from 'models'
 
+import pageBg from 'assets/images/bg5.jpg'
+
 const Create: React.FunctionComponent<any> = () => {
   const dispatcher = useStoreDispatch()
   const triggerRef = React.useRef<HTMLButtonElement>(null)
@@ -29,7 +31,7 @@ const Create: React.FunctionComponent<any> = () => {
   const emptyDragon: DragonT = { name: '', type: '', histories: [], createdAt: '', id: '' }
 
   return (
-    <Page title="Novo dragão" fabs={[createFAB]} fullHeight>
+    <Page title="Novo dragão" background={pageBg} glassContainer fabs={[createFAB]} fullHeight>
       <DragonEditorForm initialValues={emptyDragon} onSubmit={onReceiveChanges} triggerRef={triggerRef}/>
     </Page>
   )
