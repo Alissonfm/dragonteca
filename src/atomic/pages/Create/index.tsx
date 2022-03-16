@@ -9,7 +9,7 @@ import Page from 'atomic/templates/Page'
 import DragonEditorForm from 'atomic/organisms/DragonEditorForm'
 import { DragonT } from 'models'
 
-import pageBg from 'assets/images/bg5.jpg'
+import pageBg from 'assets/images/bg6.jpg'
 
 const Create: React.FunctionComponent<any> = () => {
   const dispatcher = useStoreDispatch()

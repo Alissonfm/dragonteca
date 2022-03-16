@@ -31,7 +31,7 @@ const Header: React.FunctionComponent = () => {
     width: 'inherit',
     padding: '0.5rem 0',
     'h1': {
-      fontSize: '1.25rem',
+      fontSize: '1rem',
     },
     '@media screen and (min-width: 768px)': {
       'h1': {
@@ -74,13 +74,21 @@ const Header: React.FunctionComponent = () => {
   }
 
   const backButtonSX = {
-    marginRight: '0.5rem',
-    paddingLeft: '0.8rem',
-    paddingRight: '0.8rem',
+    marginRight: '0.25rem',
+    paddingLeft: '0.6rem',
+    paddingRight: '0.6rem',
     backgroundColor: 'rgba(0,0,0,0.125)',
     'svg': {
       color: 'black',
-      fontSize: '1.5rem'
+      fontSize: '0.75rem'
+    },
+    '@media screen and (min-width: 768px)': {
+      marginRight: '0.5rem',
+      paddingLeft: '0.8rem',
+      paddingRight: '0.8rem',
+      'svg': {
+        fontSize: '1.5rem'
+      }
     }
   }
 
@@ -89,7 +97,12 @@ const Header: React.FunctionComponent = () => {
     color: 'black',
     backgroundColor: 'rgba(0,0,0,0.125)',
     'svg': {
-      fontSize: '1.5rem'
+      fontSize: '0.75rem'
+    },
+    '@media screen and (min-width: 768px)': {
+      'svg': {
+        fontSize: '1.5rem'
+      }
     }
   }
 

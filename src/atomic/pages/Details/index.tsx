@@ -1,7 +1,7 @@
 import React from 'react'
 import _map from 'lodash/map'
 import { v4 } from 'uuid'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Navigate } from 'react-router-dom'
 
 import Divider from '@mui/material/Divider'
 import Fab from '@mui/material/Fab'
@@ -14,6 +14,7 @@ import History from 'atomic/organisms/History'
 import AlertModal, { AlertModalT } from 'atomic/organisms/AlertModal'
 
 import pageBg from 'assets/images/bg5.jpg'
+import Loading from 'atomic/molecules/Loading'
 
 const Details: React.FunctionComponent<any> = () => {
   const navigator = useNavigate()
@@ -27,7 +28,7 @@ const Details: React.FunctionComponent<any> = () => {
 
   const haveHistories = selected?.histories && selected.histories.length > 0
 
-  if (!selected || loading) return <span>carregando...</span>
+  if (!selected || loading) return <Loading isLoading />
 
   const historiesSection = haveHistories ? _map(selected.histories, (history) => <History key={v4()} value={history} />) : (<span>Poxa, esse dragão ainda não tem histórias...</span>)
 

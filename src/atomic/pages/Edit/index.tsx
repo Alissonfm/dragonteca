@@ -9,7 +9,8 @@ import { dragonActions } from 'store/dragonStore'
 import Page from 'atomic/templates/Page'
 import DragonEditorForm from 'atomic/organisms/DragonEditorForm'
 
-import pageBg from 'assets/images/bg7.jpg'
+import pageBg from 'assets/images/bg5.jpg'
+import Loading from 'atomic/molecules/Loading'
 
 const Edit: React.FunctionComponent<any> = () => {
   const { selected, loading } = useDragonStore()
@@ -18,7 +19,7 @@ const Edit: React.FunctionComponent<any> = () => {
 
   if (!selected) return <Navigate to="/home" />
 
-  if (loading) return <span>carregando...</span>
+  if (loading) return <Loading isLoading />
 
   const onReceiveChanges = (newData: any) => {
     console.log("Submiting data", newData)

@@ -16,7 +16,7 @@ const Grid: React.FunctionComponent<GridT> = ({ data, gridItem, smallSize = 6, m
   const mountGridIten = (item: any) => <MuiGrid key={item.id ?? v4()} item xs={smallSize} md={mediumSize}>{gridItem(item)}</MuiGrid>
 
   return (
-    <MuiGrid container spacing={4}>
+    <MuiGrid container spacing={3}>
       {_map(data, mountGridIten)}
     </MuiGrid>
   )
